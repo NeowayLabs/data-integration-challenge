@@ -8,20 +8,20 @@ Yawoen company has hired you to implement a Data API.
 
 **1 - Load company data in a database**
 
-Read data from CSV file and load into the database to create a catalog named **companies**.
+Read data from CSV file and load into the database to create an entity named **companies**.
 
 This catalog should contain the following fields: id, company name and zip code. 
 
 suport file: q1_catalog.csv
 
 
-**2 - API to integrate data using a database**
+**2 - An API to integrate data using a database**
 
-Yawoen company started to capture website data and want to integrate with your database.
+Yawoen company started to capture website data from another source and want to integrate it with the entity you've just created on the database.
 
-This new source data has the following protocol:
+This new source data has the following input protocol:
 
-- Response format: JSON
+- Input file format: CSV
 
 - Parameters:
 
@@ -29,17 +29,7 @@ This new source data has the following protocol:
     - Zip: string 
     - Website: string
 
-Example: 
-
-```
-{
-	"name": "Yawoen Business Solutions",
-	"zip":"10023",
-	"website": "www.yawoen.com"
-}
-``` 
-
-Build an API to integrate **website data** records using the catalog you just created.
+Build an API to integrate **website data** records into the entity records you've just created.
 
 The data source doesn't provide the id field, so you'll have to use the available fields to aggregate the new attribute **website** and store it.
 
@@ -48,10 +38,9 @@ suport file: q2_clientData.csv
 
 **Extra - Matching API to get data based on specified parameters**
 
-Now a Yawoen client wants to access a API to get companies information. They have name and zip code fields.
+Now a Yawoen client wants to access an API to get companies information. They have name and zip code fields.
 
-You will need to have a matching strategy because the client have only part of the company name, for example "Yawoen Business Solutions" is captured as "Yawoen" in the source.
-
+You will need to have a matching strategy because the client only has part of the company name, for example "Yawoen Business Solutions" is captured as "Yawoen" in the source.
 
 ### Notes
 
@@ -71,4 +60,3 @@ Make sure Yawoen folks will have access to the source code.
 If you prefer, just compress this directory and send it back to us.
 
 Have fun!
-
