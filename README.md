@@ -10,7 +10,7 @@ Yawoen company has hired you to implement a Data API.
 
 Read data from CSV file and load into the database to create an entity named **companies**.
 
-This catalog should contain the following fields: id, company name and zip code. 
+This entity should contain the following fields: id, company name and zip code. 
 
 suport file: q1_catalog.csv
 
