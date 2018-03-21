@@ -42,6 +42,15 @@ Now a Yawoen client wants to access an API to get companies information. They ha
 
 You will need to have a matching strategy because the client only has part of the company name, for example "Yawoen Business Solutions" is captured as "Yawoen" in the source.
 
+Ouput example: 
+ ```
+ {
+ 	"name": "Yawoen Business Solutions",
+ 	"zip":"10023",
+ 	"website": "www.yawoen.com"
+ }
+ ```
+
 ### Notes
 
 
