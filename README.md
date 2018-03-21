@@ -38,9 +38,11 @@ suport file: q2_clientData.csv
 
 **Extra - Matching API to get data based on specified parameters**
 
-Now a Yawoen client wants to access an API to get companies information. They have name and zip code fields.
+Now a Yawoen client wants to create an API to provide information getting companies information from the entity for a client. 
+The parameters would be `name` and `zip` code fields.
 
-You will need to have a matching strategy because the client only has part of the company name, for example "Yawoen Business Solutions" is captured as "Yawoen" in the source.
+You will need to have a matching strategy because the client might have only a part of the company name. 
+For example: "Yawoen" string from "Yawoen Business Solutions".
 
 Ouput example: 
  ```
