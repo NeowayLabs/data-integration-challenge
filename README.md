@@ -38,7 +38,7 @@ suport file: q2_clientData.csv
 
 **Extra - Matching API to get data based on specified parameters**
 
-Now a Yawoen client wants to create an API to provide information getting companies information from the entity for a client. 
+Now a Yawoen wants to create an API to provide information getting companies information from the entity for a client. 
 The parameters would be `name` and `zip` code fields.
 
 You will need to have a matching strategy because the client might have only a part of the company name. 
