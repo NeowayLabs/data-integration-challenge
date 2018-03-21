@@ -47,7 +47,7 @@ For example: "Yawoen" string from "Yawoen Business Solutions".
 Ouput example: 
  ```
  {
-    "id": "abc-1de-123fg",
+ 	"id": "abc-1de-123fg",
  	"name": "Yawoen Business Solutions",
  	"zip":"10023",
  	"website": "www.yawoen.com"
@@ -67,9 +67,9 @@ Ouput example:
 ### Deliverable
 
 
-A git repo hosted wherever you like.
-Make sure Yawoen folks will have access to the source code.
-Fill the Makefile targets with the apropriated commands (TODO tags).
-If you prefer, just compress this directory and send it back to us.
+- A git repo hosted wherever you like.
+- Make sure Yawoen folks will have access to the source code.
+- Fill the Makefile targets with the apropriated commands (TODO tags).
+- If you prefer, just compress this directory and send it back to us.
 
 Have fun!
