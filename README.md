@@ -3,7 +3,9 @@
 
 Welcome to Data API challenge.
 
-Yawoen company has hired you to implement a Data API. 
+Yawoen company has hired you to implement a Data API.
+
+Data Integration team is a team focused on data that creates and integrate data from heterogeneos sources into entities.
 
 ## The challenge
 
@@ -18,7 +20,7 @@ suport file: q1_catalog.csv
 
 ### 2 - An API to integrate data using a database
 
-Yawoen company started to capture website data from another source and want to integrate it with the entity you've just created on the database. When possible, it's mandatory that the data are merged.
+Yawoen company started to capture website data from another source and want to integrate it with the entity you've just created on the database. When the requirements are met, it's **mandatory** that the **data are merged*.
 
 This new source data has the following input protocol:
 
@@ -73,7 +75,7 @@ Ouput example:
 ## Deliverable
 
 
-- It would be REALLY nice if it was hosted in a git repo of your own. You can create a new empty project, create a branch and Merge Request it to the master branch. Provide the MR URL for us. BUT if you'd rather, just compress this directory and send it back to us.
+- It would be REALLY nice if it was hosted in a git repo of your own. You can create a new empty project, create a branch and Pull Request it to the master branch. Provide the PR URL for us. BUT if you'd rather, just compress this directory and send it back to us.
 - Make sure Yawoen folks will have access to the source code.
 - Fill the **Makefile** targets with the apropriated commands (**TODO** tags).
 
