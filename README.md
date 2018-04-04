@@ -1,11 +1,11 @@
 # Data integration challenge
 
 
-Welcome to Data API challenge.
+Welcome to Data Integration challenge.
 
-Yawoen company has hired you to implement a Data API.
+Yawoen company has hired you to implement a Data API for Data Integration team.
 
-Data Integration team is a team focused on data that creates and integrate data from heterogeneos sources into entities.
+Data Integration team is focused on combining data residing in different heterogeneous sources and providing it in an unified view of them into entities.
 
 ## The challenge
 
