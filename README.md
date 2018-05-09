@@ -5,7 +5,7 @@ Welcome to Data Integration challenge.
 
 Yawoen company has hired you to implement a Data API for Data Integration team.
 
-Data Integration team is focused on combining data residing in different heterogeneous sources and providing it in an unified view of them into entities.
+Data Integration team is focused on combining data from different heterogeneous sources and providing it to an unified view into entities.
 
 ## The challenge
 
@@ -15,44 +15,41 @@ Read data from CSV file and load into the database to create an entity named **c
 
 This entity should contain the following fields: id, company name and zip code. 
 
-suport file: q1_catalog.csv
+support file: q1_catalog.csv
 
 
 ### 2 - An API to integrate data using a database
 
-Yawoen company started to capture website data from another source and want to integrate it with the entity you've just created on the database. When the requirements are met, it's **mandatory** that the **data are merged*.
+Yawoen now wants to get website data from another source and integrate it with the entity you've just created on the database. When the requirements are met, it's **mandatory** that the **data are merged**.
 
-This new source data has the following input protocol:
-
-- Data treatment
- - **Name:** upper case text
- - **zip:** a five digit text
- - **website:** lower case text
+This new source data must meet the following requirements:
 
 - Input file format: CSV
-
-- Parameters:
-
+- Data treatment
+    - **Name:** upper case text
+    - **zip:** a five digit text
+    - **website:** lower case text
+- Parameters
     - Name: string
     - Zip: string 
     - Website: string
 
 Build an API to **integrate** `website` data field into the entity records you've just created using **HTTP protocol**.
 
-The data source doesn't provide the id field, so you'll have to use the available fields to aggregate the new attribute **website** and store it. If the record doesn't exists, discard it.
+An id field is non existent on the data source, so you'll have to use the available fields to aggregate the new attribute **website** and store it. If the record doesn't exist, discard it.
 
-suport file: q2_clientData.csv
+support file: q2_clientData.csv
 
 
-### Extra - Matching API to get data based on specified parameters
+### Extra - Matching API to retrieve data
 
-Now a Yawoen wants to create an API to provide information getting companies information from the entity for a client. 
-The parameters would be `name` and `zip` code fields. To query on the database an **AND** logic operator must be used between the fields.
+Now Yawoen wants to create an API to provide information getting companies information from the entity to a client. 
+The parameters would be `name` and `zip` fields. To query on the database an **AND** logic operator must be used between the fields.
 
-You will need to have a matching strategy because the client might have only a part of the company name. 
-For example: "Yawoen" string from "Yawoen Business Solutions".
+You will need to have a matching strategy because the client might only have a part of the company name. 
+Example: "Yawoen" string from "Yawoen Business Solutions".
 
-Ouput example: 
+Output example: 
  ```
  {
  	"id": "abc-1de-123fg",
@@ -65,9 +62,8 @@ Ouput example:
 ## Notes
 
 
-- More than one instance of the application will serve HTTP requests at the same time.
-- Make sure other programmers can easily run the application locally.
-- Yawoen doesn't care about the language, the database and other tools that you might choose however make sure your decisions take notice of the market. For example, Brainfuck might not be a good decision.
+- Make sure other developers can easily run the application locally.
+- Yawoen isn't picky about the programming language, the database and other tools that you might choose. Just take notice of the market before making your decision.
 - Automated tests are mandatory.
 - Document your API if you are willing to.
 
