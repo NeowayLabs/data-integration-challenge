@@ -9,6 +9,9 @@ Data Integration team is focused on combining data from different heterogeneous 
 
 ## The challenge
 
+It would be really good if you try to make the code using Go language :)
+The other technologies you can feel free to choose.
+
 ### 1 - Load company data in a database
 
 Read data from CSV file and load into the database to create an entity named **companies**.
