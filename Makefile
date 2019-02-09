@@ -1,10 +1,10 @@
 #Challenge Makefile
 
 start:
-#TODO: commands necessary to start the API
+	go run $(ls *.go | grep -v 'test')
 
 check:
-#TODO: include command to test the code and show the results
+	go test ./... -cover
 
-#setup:
-#if needed to setup the enviroment before starting it
+setup:
+		/bin/bash setup.sh
