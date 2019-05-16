@@ -1,11 +1,11 @@
-package companies
+package models
 
 import (
 	"errors"
 	"net/url"
 	"regexp"
-	"strings"
 
+	"github.com/jean-lopes/data-integration-challenge/pkg/util"
 	uuid "github.com/satori/go.uuid"
 )
 
@@ -38,9 +38,9 @@ func (company Company) Validate() []error {
 	websiteError := validateWebsite(company.Website)
 
 	errors := make([]error, 0)
-	errors = appendError(errors, nameError)
-	errors = appendError(errors, zipError)
-	errors = appendError(errors, websiteError)
+	errors = util.AppendError(errors, nameError)
+	errors = util.AppendError(errors, zipError)
+	errors = util.AppendError(errors, websiteError)
 
 	if len(errors) == 0 {
 		return nil
@@ -67,12 +67,8 @@ func (company Company) Equal(other Company) bool {
 	return company.ID != nil && other.ID != nil && uuid.Equal(*company.ID, *other.ID)
 }
 
-func isBlank(s string) bool {
-	return len(strings.TrimSpace(s)) == 0
-}
-
 func validateName(name string) error {
-	if isBlank(name) {
+	if util.IsBlank(name) {
 		return ErrEmptyName
 	}
 
@@ -80,7 +76,7 @@ func validateName(name string) error {
 }
 
 func validateZip(zip string) error {
-	if isBlank(zip) {
+	if util.IsBlank(zip) {
 		return ErrEmptyZip
 	}
 
@@ -92,7 +88,7 @@ func validateZip(zip string) error {
 }
 
 func validateWebsite(website *string) error {
-	if website != nil && !isBlank(*website) {
+	if website != nil && !util.IsBlank(*website) {
 		_, err := url.ParseRequestURI(*website)
 		if err != nil {
 			return ErrInvalidWebsite
@@ -100,12 +96,4 @@ func validateWebsite(website *string) error {
 	}
 
 	return nil
-}
-
-func appendError(errors []error, err error) []error {
-	if err != nil {
-		errors = append(errors, err)
-	}
-
-	return errors
 }

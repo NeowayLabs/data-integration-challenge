@@ -61,7 +61,7 @@ func loadDatabase(service companies.Service) {
 		line++
 		err := service.Save(&c)
 		if err != nil {
-			log.Printf("Ignoring line %d from %q", line, "q1_catalog.csv")
+			log.Printf("Ignoring line %d from %q. Error: %v", line, "q1_catalog.csv", err)
 		}
 	}
 }
