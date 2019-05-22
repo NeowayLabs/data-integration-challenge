@@ -1,10 +1,10 @@
 #Challenge Makefile
 
-start:
-	go run $(ls *.go | grep -v 'test')
+start-server:
+	go run ./cmd/server/main.go
 
 check:
 	go test ./... -cover
 
 setup:
-		/bin/bash setup.sh
+		/bin/bash scripts/setup.sh
