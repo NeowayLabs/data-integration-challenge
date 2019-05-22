@@ -23,7 +23,7 @@ docker run --rm \
   --env POSTGRES_USER=$PG_USER \
   --env POSTGRES_PASSWORD=$PG_PASS \
   -p $PG_PORT:5432 \
-  -v "$PWD/schema.sql":/docker-entrypoint-initdb.d/schema.sql \
+  -v "$PWD/scripts/schema.sql":/docker-entrypoint-initdb.d/schema.sql \
   -d postgres:alpine \
   -c "log_destination=stderr" \
   -c "log_statement=all"

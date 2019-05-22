@@ -8,6 +8,8 @@ require (
 	github.com/cweill/gotests v1.5.3 // indirect
 	github.com/go-http-utils/logger v0.0.0-20161128092850-f3a42dcdeae6
 	github.com/jinzhu/gorm v1.9.8
+	github.com/kr/pretty v0.1.0 // indirect
+	github.com/lib/pq v1.1.0
 	github.com/ramya-rao-a/go-outline v0.0.0-20181122025142-7182a932836a // indirect
 	github.com/satori/go.uuid v1.2.0
 	golang.org/x/tools v0.0.0-20190515235946-4f9510c6a12d // indirect

@@ -9,15 +9,16 @@ import (
 )
 
 // ReadAll opens a channel and returns all records as an array of strings
-func ReadAll(path string, fieldSeparator rune, chanSize int) chan []string {
+func ReadAll(path string, fieldSeparator rune, chanSize int) <-chan []string {
 	cs := make(chan []string, chanSize)
 
 	go func() {
 		defer close(cs)
+
 		fr, err := os.Open(path)
 		if err != nil {
-			close(cs)
-			panic(err)
+			log.Fatalf("Failed to open file: %s. Error: %v", path, err)
+			return
 		}
 		defer fr.Close()
 

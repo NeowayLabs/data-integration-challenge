@@ -17,6 +17,9 @@ type Company struct {
 	Website *string    `json:"website,omitempty"`
 }
 
+// CompanyMapper generic company mapper
+type CompanyMapper = func(Company) Company
+
 var (
 	// ErrEmptyName empty name error
 	ErrEmptyName = errors.New("Empty company name")
@@ -26,9 +29,9 @@ var (
 	ErrInvalidZip = errors.New("Company zip code must have exacly 5 (five) digits")
 	// ErrInvalidWebsite malformed URI
 	ErrInvalidWebsite = errors.New("Invalid website")
-	// Nil represents an Empty company
-	Nil   = Company{}
-	zipRE = regexp.MustCompile("[0-9]{5}")
+	// ErrCompanyAlreadyExists Company already exists on storage
+	ErrCompanyAlreadyExists = errors.New("Company already exists")
+	zipRE                   = regexp.MustCompile("[0-9]{5}")
 )
 
 // Validate business constraints
@@ -96,4 +99,21 @@ func validateWebsite(website *string) error {
 	}
 
 	return nil
+}
+
+// MapCompanies company stream
+func MapCompanies(companies <-chan Company, channelSize int, fn CompanyMapper) chan Company {
+	ch := make(chan Company, channelSize)
+
+	go func() {
+		defer close(ch)
+
+		for c := range companies {
+			c = fn(c)
+
+			ch <- c
+		}
+	}()
+
+	return ch
 }
