@@ -39,8 +39,11 @@ func CreateCompanyHandler(store storage.Company) func(http.ResponseWriter, *http
 			return
 		}
 
-		id := uuid.NewV4()
-		c.ID = &id
+		if !c.HasID() {
+			id := uuid.NewV4()
+			c.ID = &id
+		}
+
 		err = store.Save(c)
 		if err != nil {
 			httphelpers.InternalError(w, err)

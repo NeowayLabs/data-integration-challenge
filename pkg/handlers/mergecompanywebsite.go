@@ -11,9 +11,9 @@ import (
 
 // MergeCompanyWebsiteHandlerBody nice long name k
 type MergeCompanyWebsiteHandlerBody struct {
-	Name    string  `json:"name"`
-	Zip     string  `json:"zip"`
-	Website *string `json:"website"`
+	Name    string `json:"name"`
+	Zip     string `json:"zip"`
+	Website string `json:"website"`
 }
 
 // MergeCompanyWebsiteHandler handler for updating companies .-.
@@ -29,14 +29,14 @@ func MergeCompanyWebsiteHandler(store storage.Company) func(http.ResponseWriter,
 			return
 		}
 
-		c := models.Company{Name: args.Name, Zip: args.Zip, Website: args.Website}
+		c := models.Company{Name: args.Name, Zip: args.Zip, Website: &args.Website}
 		errs := c.Validate()
 		if errs != nil {
 			httphelpers.BadRequest(w, errs)
 			return
 		}
 
-		err = store.UpdateWebsite(args.Website, args.Name, args.Zip)
+		err = store.UpdateWebsite(&args.Website, args.Name, args.Zip)
 		if err != nil {
 			httphelpers.InternalError(w, err)
 			return

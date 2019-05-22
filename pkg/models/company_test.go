@@ -7,6 +7,10 @@ import (
 )
 
 func TestCompany_HasID(t *testing.T) {
+	id := uuid.NewV4()
+	companyWithID := Company{}
+	companyWithID.ID = &id
+
 	tests := []struct {
 		name string
 		obj  Company
@@ -19,7 +23,7 @@ func TestCompany_HasID(t *testing.T) {
 		},
 		{
 			"With ID",
-			GenerateCompanyID(Company{}),
+			companyWithID,
 			true,
 		},
 	}

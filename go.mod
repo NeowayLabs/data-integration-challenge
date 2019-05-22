@@ -12,5 +12,6 @@ require (
 	github.com/lib/pq v1.1.0
 	github.com/ramya-rao-a/go-outline v0.0.0-20181122025142-7182a932836a // indirect
 	github.com/satori/go.uuid v1.2.0
+	github.com/urfave/cli v1.20.0
 	golang.org/x/tools v0.0.0-20190515235946-4f9510c6a12d // indirect
 )
