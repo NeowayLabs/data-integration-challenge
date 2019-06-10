@@ -12,11 +12,15 @@ Data Integration team is focused on combining data from different heterogeneous 
 It would be really good if you try to make the code using Go language :)
 The other technologies you can feel free to choose.
 
-### 1 - Load company data in a database
+### 1 - Load treated company data in a database
 
 Read data from CSV file and load into the database to create an entity named **companies**.
 
 This entity should contain the following fields: id, company name and zip code. 
+
+- The loaded data should have the following treatment:
+    - **Name:** upper case text
+    - **zip:** a five digit text
 
 support file: q1_catalog.csv
 
@@ -39,7 +43,7 @@ This new source data must meet the following requirements:
 
 Build an API to **integrate** `website` data field into the entity records you've just created using **HTTP protocol**.
 
-An id field is non existent on the data source, so you'll have to use the available fields to aggregate the new attribute **website** and store it. If the record doesn't exist, discard it.
+The `id` field is non existent on the data source, so you'll have to use the available fields to aggregate the new attribute **website** and store it. If the record doesn't exist, discard it.
 
 support file: q2_clientData.csv
 
@@ -74,8 +78,8 @@ Output example:
 ## Deliverable
 
 
-- It would be REALLY nice if it was hosted in a git repo of your own. You can create a new empty project, create a branch and Pull Request it to the master branch. Provide the PR URL for us. BUT if you'd rather, just compress this directory and send it back to us.
+- It would be REALLY nice if it was hosted in a git repo of your own. You can create a new empty project, create a branch and Pull Request it to the master branch. Provide the PR URL for us so we can discuss the code :grin:. BUT if you'd rather, just compress this directory and send it back to us.
 - Make sure Yawoen folks will have access to the source code.
-- Fill the **Makefile** targets with the apropriated commands (**TODO** tags).
+- Fill the **Makefile** targets with the apropriated commands (**TODO** tags). That is for easy executing the deliverables (tests and execution). If you have other ideas besides a Makefile feel free to use and reference it on your documentation.
 
 Have fun!
