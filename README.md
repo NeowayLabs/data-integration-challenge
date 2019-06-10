@@ -68,7 +68,7 @@ Output example:
 - Make sure other developers can easily run the application locally.
 - Yawoen isn't picky about the programming language, the database and other tools that you might choose. Just take notice of the market before making your decision.
 - Automated tests are mandatory.
-- Document your API if you are willing to.
+- Document your API: fill out a **README.md** file with instructions on how to install and use it.
 
 
 ## Deliverable
