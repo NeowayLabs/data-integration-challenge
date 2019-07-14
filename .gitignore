@@ -6,3 +6,5 @@
 
 # Database
 challenge.db
+
+assets/*.csv
