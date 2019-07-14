@@ -83,3 +83,31 @@ Output example:
 - Fill the **Makefile** targets with the apropriated commands (**TODO** tags). That is for easy executing the deliverables (tests and execution). If you have other ideas besides a Makefile feel free to use and reference it on your documentation.
 
 Have fun!
+
+
+# Instructions
+ - clone repo in "GOPATH/src/" 
+ ```git clone https://github.com/ruiblaese/data-integration-challenge.git```  
+ - ```cd data-integration-challenge```
+ - ```make setup```
+ - execute tests or run api  
+   -  ```make start```
+   -  ```make check```
+ - If API running you can see in http://localhost:4000/
+
+ ### Notes Development
+ - Go(Golang) with [Gin](https://github.com/gin-gonic/gin) :D
+ - SQLite
+ - The first data ```q1_catalog.csv``` are process in first start of API
+   - ```dataIntegrationChallenge.tgz``` are extract for get file above and for execute the tests
+
+ ##### API Routes
+ - GET: http://localhost:4000/api/v1/companies
+ - GET (Id): http://localhost:4000/api/v1/companies/:id
+ - PUT: http://localhost:4000/api/v1/companies/:id
+ - POST: http://localhost:4000/api/v1/companies/  
+ - DELETE: http://localhost:4000/api/v1/companies/:id   
+ -    
+ - POST: http://localhost:4000/api/v1/companies/upload `form for tests: http://localhost:4000/testUpload.html`   
+ - 
+ - GET with parameters name and zip:http://localhost:4000/api/v1/companies?name={NAME}&zipcode={ZIPCODE}  `exemple: http://localhost:4000/api/v1/companies?name=T&zipcode=32780`

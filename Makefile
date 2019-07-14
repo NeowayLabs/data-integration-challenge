@@ -1,10 +1,10 @@
 #Challenge Makefile
 
 start:
-#TODO: commands necessary to start the API
+	go run main.go
 
 check:
-#TODO: include command to test the code and show the results
+	go test
 
-#setup:
-#if needed to setup the enviroment before starting it
+setup :
+	go get ./...

@@ -1,0 +1,8 @@
+# Environment variables file
+.env
+
+# Visual Studio Code
+.vscode
+
+# Database
+challenge.db
