@@ -78,7 +78,7 @@ Output example:
 ## Deliverable
 
 
-- It would be REALLY nice if it was hosted in a git repo of your own. You can create a new empty project, create a branch and Pull Request it to the master branch. Provide the PR URL for us so we can discuss the code :grin:. BUT if you'd rather, just compress this directory and send it back to us.
+- It would be REALLY nice if it was hosted in a git repo of your **own**. You can create a new empty project, create a branch and Pull Request it to the new master branch you have just created. Provide the PR URL for us so we can discuss the code :grin:. BUT if you'd rather, just compress this directory and send it back to us.
 - Make sure Yawoen folks will have access to the source code.
 - Fill the **Makefile** targets with the apropriated commands (**TODO** tags). That is for easy executing the deliverables (tests and execution). If you have other ideas besides a Makefile feel free to use and reference it on your documentation.
 
