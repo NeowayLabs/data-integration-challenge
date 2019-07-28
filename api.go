@@ -6,6 +6,7 @@ import(
     "encoding/csv"
     "encoding/json"
     "io"
+    "strconv"
     "net/http"
     "io/ioutil"
     "github.com/joho/godotenv"
@@ -42,7 +43,7 @@ func init() {
 }
 
 type Company struct {
-    Id  string `json:"Id,omitempty"`
+    Id    string `json:"Id,omitempty"`
     Name  string `json:"Name,omitempty"`
     Zip  string `json:"Zip,omitempty"`
     Website  string `json:"Website,omitempty"`
@@ -54,6 +55,7 @@ func main() {
 
     newRouter := mux.NewRouter().StrictSlash(true)
     newRouter.HandleFunc("/", index)
+    newRouter.HandleFunc("/company", GetCompanies).Methods("GET")
     newRouter.HandleFunc("/company/{id}", GetCompany).Methods("GET")
     newRouter.HandleFunc("/company/match", MatchZipAndName).Methods("POST")
     newRouter.HandleFunc("/populate", PopulateDB).Methods("POST")
@@ -84,9 +86,15 @@ func GetCompany(w http.ResponseWriter, r *http.Request) {
 
 func MatchZipAndName(w http.ResponseWriter, r *http.Request) {
 
-     params := mux.Vars(r)
+     var match_company Company
+
+     err := json.NewDecoder(r.Body).Decode(&match_company)
+     if err != nil {
+        panic(err)
+     }
+
      for _, item := range companies {
-         if (strings.Contains(item.Name, params["name"]) && (item.Zip == params["zip"])) {
+         if (strings.Contains(item.Name, match_company.Name) && (item.Zip == match_company.Zip)) {
             json.NewEncoder(w).Encode(item)
             return
          }
@@ -141,7 +149,7 @@ func PopulateDB(w http.ResponseWriter, r *http.Request) {
         name := strings.ToUpper(line[0])
         zip := fmt.Sprintf("%05s", line[1])
 
-        companies = append(companies, Company{Id: string(id), Name: name, Zip: zip})
+        companies = append(companies, Company{Id: strconv.Itoa(id), Name: name, Zip: zip})
 
         _, err = db.Exec(insert_query, id, name, zip)
         if err != nil {
@@ -198,9 +206,12 @@ func IntegrateWebsite(w http.ResponseWriter, r *http.Request) {
         zip := fmt.Sprintf("%05s", line[1])
         website := strings.ToLower(line[2])
 
+        slice_id := 0
         for _, item := range companies {
+            slice_id += 1
             if item.Name == name {
-                item.Website = website
+                companies = append(companies[:slice_id-1], companies[slice_id:]...)
+                companies = append(companies, Company{Id: strconv.Itoa(slice_id), Name: name, Zip: zip, Website: website})
                 break
             }
         }
