@@ -36,7 +36,6 @@ func main() {
 
     delete_query := `DROP TABLE IF EXISTS companies;`
 
-
     _, err = db.Exec(delete_query)
     if err != nil {
         panic(err)

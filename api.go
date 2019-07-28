@@ -45,6 +45,7 @@ func main() {
     newRouter := mux.NewRouter().StrictSlash(true)
     newRouter.HandleFunc("/", index)
     newRouter.HandleFunc("/company", GetCompanies).Methods("GET")
+    newRouter.HandleFunc("/populate", PopulateDB).Methods("POST")
     newRouter.HandleFunc("/integrate_website", IntegrateWebsite).Methods("POST")
     log.Fatal(http.ListenAndServe(":8080", newRouter))
 
@@ -55,6 +56,61 @@ func index(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetCompanies(w http.ResponseWriter, r *http.Request) {}
+
+func PopulateDB(w http.ResponseWriter, r *http.Request) {
+
+    reqBody, _ := ioutil.ReadAll(r.Body)    
+
+    delete_query := `DROP TABLE IF EXISTS companies;`
+
+    _, err = db.Exec(delete_query)
+    if err != nil {
+        panic(err)
+    }
+
+    create_query := `
+    CREATE TABLE IF NOT EXISTS companies (
+            Id serial primary key,
+            name varchar,
+            zip varchar
+    );`
+
+    _, err = db.Exec(create_query)
+    if err != nil {
+        panic(err)
+    }
+
+    insert_query := `
+    INSERT INTO companies (Id, name, zip)
+    VALUES ($1, $2, $3);`
+
+    csvFile, _ := os.Open(string(reqBody))
+    reader := csv.NewReader(csvFile)
+    reader.Comma = ';'
+    id := -1 
+    for {
+        line, error := reader.Read()
+        if error == io.EOF {
+            break
+        } else if error != nil {
+            log.Fatal(error)
+        } else if id == -1 {
+            id += 1
+            continue
+        }
+
+        id += 1
+
+        name := strings.ToUpper(line[0])
+        zip := fmt.Sprintf("%05s", line[1])
+
+        _, err = db.Exec(insert_query, id, name, zip)
+        if err != nil {
+            panic(err)
+        }   
+    }
+}
+
 
 func IntegrateWebsite(w http.ResponseWriter, r *http.Request) {
     reqBody, _ := ioutil.ReadAll(r.Body)    
