@@ -4,6 +4,7 @@ import(
     "github.com/gorilla/mux"
     "database/sql"
     "encoding/csv"
+    "encoding/json"
     "io"
     "net/http"
     "io/ioutil"
@@ -40,11 +41,21 @@ func init() {
     }
 }
 
+type Company struct {
+    Id  string `json:"Id,omitempty"`
+    Name  string `json:"Name,omitempty"`
+    Zip  string `json:"Zip,omitempty"`
+    Website  string `json:"Website,omitempty"`
+}
+
+var companies []Company
+
 func main() {
 
     newRouter := mux.NewRouter().StrictSlash(true)
     newRouter.HandleFunc("/", index)
-    newRouter.HandleFunc("/company", GetCompanies).Methods("GET")
+    newRouter.HandleFunc("/company/{id}", GetCompany).Methods("GET")
+    newRouter.HandleFunc("/company/match", MatchZipAndName).Methods("POST")
     newRouter.HandleFunc("/populate", PopulateDB).Methods("POST")
     newRouter.HandleFunc("/integrate_website", IntegrateWebsite).Methods("POST")
     log.Fatal(http.ListenAndServe(":8080", newRouter))
@@ -55,7 +66,33 @@ func index(w http.ResponseWriter, r *http.Request) {
     http.Redirect(w, r, "/company", http.StatusSeeOther)
 }
 
-func GetCompanies(w http.ResponseWriter, r *http.Request) {}
+func GetCompanies(w http.ResponseWriter, r *http.Request) {
+    json.NewEncoder(w).Encode(companies)
+}
+
+func GetCompany(w http.ResponseWriter, r *http.Request) {
+
+    params := mux.Vars(r)
+    for _, item := range companies {
+        if item.Id == params["id"] {
+            json.NewEncoder(w).Encode(item)
+            return
+        }
+    }
+    json.NewEncoder(w).Encode(&Company{})
+}
+
+func MatchZipAndName(w http.ResponseWriter, r *http.Request) {
+
+     params := mux.Vars(r)
+     for _, item := range companies {
+         if (strings.Contains(item.Name, params["name"]) && (item.Zip == params["zip"])) {
+            json.NewEncoder(w).Encode(item)
+            return
+         }
+    }
+    json.NewEncoder(w).Encode(&Company{})
+}
 
 func PopulateDB(w http.ResponseWriter, r *http.Request) {
 
@@ -103,6 +140,8 @@ func PopulateDB(w http.ResponseWriter, r *http.Request) {
 
         name := strings.ToUpper(line[0])
         zip := fmt.Sprintf("%05s", line[1])
+
+        companies = append(companies, Company{Id: string(id), Name: name, Zip: zip})
 
         _, err = db.Exec(insert_query, id, name, zip)
         if err != nil {
@@ -158,6 +197,13 @@ func IntegrateWebsite(w http.ResponseWriter, r *http.Request) {
         name := strings.ToUpper(line[0])
         zip := fmt.Sprintf("%05s", line[1])
         website := strings.ToLower(line[2])
+
+        for _, item := range companies {
+            if item.Name == name {
+                item.Website = website
+                break
+            }
+        }
 
         _, err = db.Exec(insert_query, name, zip, website)
         if err != nil {
