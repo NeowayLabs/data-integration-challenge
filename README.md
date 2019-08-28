@@ -4,9 +4,9 @@ Fiz somente a primeira parte do desafio em golang, não tenho muito conhecimento
 
 Para executar a importação, executar o seguinte comando:
 
-'''
+```
 curl -k -X POST   http://localhost:8080/upload   -H 'cache-control: no-cache'   -H 'content-type: multipart/form-data'   -F myFile=@q1_catalog.csv 
-''' 
+```
 
 Na pasta pdv esta indo um desafio que fiz para uma outra empresa, ele é bem parecido, ele eu desenvolvi em java com spring:boot
 
