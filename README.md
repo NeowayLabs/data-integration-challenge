@@ -1,85 +1,13 @@
-# Data integration challenge
+Pelo tempo não e alguns impecilios não consigo desenvolver tudo a tempo, mesmo entregando atrasado o desafio
 
+Fiz somente a primeira parte do desafio em golang, não tenho muito conhecimento em estrutura de projetos e no desenvolvimento de makefiles, fiz em cima da estrutura proposta por vocês de uma maneira bem simples.
 
-Welcome to Data Integration challenge.
+Para executar a importação, executar o seguinte comando:
 
-Yawoen company has hired you to implement a Data API for Data Integration team.
+'''
+curl -k -X POST   http://localhost:8080/upload   -H 'cache-control: no-cache'   -H 'content-type: multipart/form-data'   -F myFile=@q1_catalog.csv 
+''' 
 
-Data Integration team is focused on combining data from different heterogeneous sources and providing it to an unified view into entities.
+Na pasta pdv esta indo um desafio que fiz para uma outra empresa, ele é bem parecido, ele eu desenvolvi em java com spring:boot
 
-## The challenge
-
-It would be really good if you try to make the code using Go language :)
-The other technologies you can feel free to choose.
-
-### 1 - Load treated company data in a database
-
-Read data from CSV file and load into the database to create an entity named **companies**.
-
-This entity should contain the following fields: id, company name and zip code. 
-
-- The loaded data should have the following treatment:
-    - **Name:** upper case text
-    - **zip:** a five digit text
-
-support file: q1_catalog.csv
-
-
-### 2 - An API to integrate data using a database
-
-Yawoen now wants to get website data from another source and integrate it with the entity you've just created on the database. When the requirements are met, it's **mandatory** that the **data are merged**.
-
-This new source data must meet the following requirements:
-
-- Input file format: CSV
-- Data treatment
-    - **Name:** upper case text
-    - **zip:** a five digit text
-    - **website:** lower case text
-- Parameters
-    - Name: string
-    - Zip: string 
-    - Website: string
-
-Build an API to **integrate** `website` data field into the entity records you've just created using **HTTP protocol**.
-
-The `id` field is non existent on the data source, so you'll have to use the available fields to aggregate the new attribute **website** and store it. If the record doesn't exist, discard it.
-
-support file: q2_clientData.csv
-
-
-### Extra - Matching API to retrieve data
-
-Now Yawoen wants to create an API to provide information getting companies information from the entity to a client. 
-The parameters would be `name` and `zip` fields. To query on the database an **AND** logic operator must be used between the fields.
-
-You will need to have a matching strategy because the client might only have a part of the company name. 
-Example: "Yawoen" string from "Yawoen Business Solutions".
-
-Output example: 
- ```
- {
- 	"id": "abc-1de-123fg",
- 	"name": "Yawoen Business Solutions",
- 	"zip":"10023",
- 	"website": "www.yawoen.com"
- }
- ```
-
-## Notes
-
-
-- Make sure other developers can easily run the application locally.
-- Yawoen isn't picky about the programming language, the database and other tools that you might choose. Just take notice of the market before making your decision.
-- Automated tests are mandatory.
-- Document your API: fill out a **README.md** file with instructions on how to install and use it.
-
-
-## Deliverable
-
-
-- It would be REALLY nice if it was hosted in a git repo of your **own**. You can create a new empty project, create a branch and Pull Request it to the new master branch you have just created. Provide the PR URL for us so we can discuss the code :grin:. BUT if you'd rather, just compress this directory and send it back to us.
-- Make sure Yawoen folks will have access to the source code.
-- Fill the **Makefile** targets with the apropriated commands (**TODO** tags). That is for easy executing the deliverables (tests and execution). If you have other ideas besides a Makefile feel free to use and reference it on your documentation.
-
-Have fun!
+Espero que com isso vocês consigam avaliar o meu conhecimento e minha potencialidade para trabalhar com vcs

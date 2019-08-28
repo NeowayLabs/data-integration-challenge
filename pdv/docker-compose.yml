@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  database:
+    build:
+      context: ./pdv-database
+      args:
+        POSTGRES_PASSWORD: pdv
+    ports:
+      - "5432:5432"
+  service:
+    build:
+      context:  ./pdv-service
+    ports:
+      - "443:8443"
+    links:
+      - database
